@@ -1,25 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_alphabet.c                                :+:      :+:    :+:   */
+/*   ft_iterative_factorial.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mabessir <mabessir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/06 14:45:21 by mabessir          #+#    #+#             */
-/*   Updated: 2017/11/06 16:19:58 by mabessir         ###   ########.fr       */
+/*   Created: 2017/11/06 16:05:30 by mabessir          #+#    #+#             */
+/*   Updated: 2017/11/06 17:19:06 by mabessir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	ft_putchar(char c);
-
-void	ft_print_alphabet(void)
+int		ft_iterative_factorial(int nb)
 {
-	char c;
+	int i;
 
-	c = 'a';
-	while (c <= 'z')
+	i = nb;
+	if (nb == 0)
+		return (1);
+	if (nb > 12)
+		return (0);
+	while (i != 0)
 	{
-		ft_putchar(c);
-		c++;
+		nb = nb * (i);
+		i--;
 	}
+	return (nb);
 }
