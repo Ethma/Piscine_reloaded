@@ -1,36 +1,53 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_iterative_factorial.c                           :+:      :+:    :+:   */
+/*   ft_display_file.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mabessir <mabessir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/06 16:05:30 by mabessir          #+#    #+#             */
-/*   Updated: 2017/11/07 18:23:31 by mabessir         ###   ########.fr       */
+/*   Created: 2017/11/07 17:59:46 by mabessir          #+#    #+#             */
+/*   Updated: 2017/11/07 18:30:59 by mabessir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		ft_iterative_factorial(int nb)
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+#include <unistd.h>
+
+void	ft_putchar(char c)
+{
+	write(1, &c, 1);
+}
+
+void	ft_putstr(char *str)
 {
 	int i;
-	int res;
 
-	i = 1;
-	res = 1;
-	if (nb == 0 || nb == 1)
-		return (1);
-	if (nb > 12)
-		return (0);
-	while (i <= nb)
+	i = 0;
+	while (str[i])
 	{
-		res = i * res;
+		ft_putchar(str[i]);
 		i++;
 	}
-	return (res);
+}
+
+void	ft_display_file(int fd)
+{
+	char *buffer;
+
+	while (read(fd, &buffer, 1) != 0)
+		write(1, &buffer, 1);
 }
 
 int		main(int ac, char **av)
 {
-	printf("%d", ft_iterative_factorial(atoi(av[1])));
+	if (ac < 2)
+		ft_putstr("File name missing.\n");
+	if (ac > 3)
+		ft_putstr("Too many arguments.\n");
+	fd = open(av[1], O_RDONLY);
+	ft_display_file(fd);
+	close(fd);
 	return (0);
 }
