@@ -6,7 +6,7 @@
 /*   By: mabessir <mabessir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/06 17:23:40 by mabessir          #+#    #+#             */
-/*   Updated: 2017/11/07 17:10:16 by mabessir         ###   ########.fr       */
+/*   Updated: 2017/11/07 19:47:13 by Mendy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,7 @@ int		ft_sqrt(int nb)
 	i = 1;
 	if (nb == 0)
 		return (0);
-	if (nb == 1)
-		return (1);
-	while (i * i <= nb * nb)
+	while (i * i <= nb)
 	{
 		if (i * i == nb)
 			return (i);
