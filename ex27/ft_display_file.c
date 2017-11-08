@@ -6,7 +6,7 @@
 /*   By: mabessir <mabessir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/07 17:59:46 by mabessir          #+#    #+#             */
-/*   Updated: 2017/11/07 18:30:59 by mabessir         ###   ########.fr       */
+/*   Updated: 2017/11/08 11:16:58 by mabessir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,20 +34,39 @@ void	ft_putstr(char *str)
 
 void	ft_display_file(int fd)
 {
-	char *buffer;
+	int		re;
+	int		buffer;
+	char	buf[11];
 
-	while (read(fd, &buffer, 1) != 0)
-		write(1, &buffer, 1);
+	buffer = 10;
+	re = read(fd, buf, buffer);
+	while (re)
+	{
+		buf[re] = '\0';
+		ft_putstr(buf);
+		re = read(fd, buf, buffer);
+	}
 }
 
 int		main(int ac, char **av)
 {
+	int fd;
+
 	if (ac < 2)
+	{
 		ft_putstr("File name missing.\n");
-	if (ac > 3)
+		return (0);
+	}
+	if (ac > 2)
+	{
 		ft_putstr("Too many arguments.\n");
+		return (0);
+	}
 	fd = open(av[1], O_RDONLY);
+	if (fd == -1)
+		return (1);
 	ft_display_file(fd);
-	close(fd);
+	if (close(fd) == -1)
+		return (1);
 	return (0);
 }

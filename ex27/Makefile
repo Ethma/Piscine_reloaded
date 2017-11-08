@@ -5,13 +5,15 @@ CFLAGS	= -Wall -Wextra -Werror -c
 FILES	= *.c
 RM		= rm -f
 
-all: $(NAME)
+all: $(NAME) clean
 
 $(NAME):
 	 	$(CC) $(CFLAGS) $(FILES)
-		ar rc ft_display_file $(O_DIR)
+		ar rc libft.a $(O_DIR)
+		gcc -o ft_display_file libft.a
 clean:
 	$(RM) $(O_DIR)
+	$(RM) libft.a
 
 fclean: 	clean
 	$(RM) $(NAME)
